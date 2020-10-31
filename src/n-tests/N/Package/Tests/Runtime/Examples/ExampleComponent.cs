@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace N.Package.Test.Runtime.Examples
+namespace N.Package.Tests.Runtime.Examples
 {
   public class ExampleComponent : MonoBehaviour
   {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace N.Package.Test.Runtime
+namespace N.Package.Tests.Runtime.Outputs
 {
   public class RuntimeTestOutputUi : MonoBehaviour
   {

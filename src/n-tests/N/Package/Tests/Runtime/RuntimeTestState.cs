@@ -1,4 +1,4 @@
-﻿namespace N.Package.Test.Runtime
+﻿namespace N.Package.Tests.Runtime
 {
   public enum RuntimeTestState
   {

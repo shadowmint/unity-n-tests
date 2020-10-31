@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace N.Package.Test.Runtime
+namespace N.Package.Tests.Runtime
 {
   [System.Serializable]
   public class RuntimeTestResult

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using N.Package.Tests.Runtime.Outputs;
 using UnityEngine;
-using Object = System.Object;
 
-namespace N.Package.Test.Runtime
+namespace N.Package.Tests.Runtime
 {
   public class RuntimeTestRunner : MonoBehaviour
   {

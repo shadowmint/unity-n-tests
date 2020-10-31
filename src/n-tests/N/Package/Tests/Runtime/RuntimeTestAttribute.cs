@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace N.Package.Test.Runtime
+namespace N.Package.Tests.Runtime
 {
   [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
   public class RuntimeTestAttribute : Attribute

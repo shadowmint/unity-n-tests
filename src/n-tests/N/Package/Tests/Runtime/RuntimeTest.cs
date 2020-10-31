@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace N.Package.Test.Runtime
+namespace N.Package.Tests.Runtime
 {
   [RequireComponent(typeof(RuntimeTestRunner))]
   public class RuntimeTest : MonoBehaviour

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace N.Package.Test
+namespace N.Package.Tests
 {
   /// <summary>
   /// Unity aware test case helper methods.

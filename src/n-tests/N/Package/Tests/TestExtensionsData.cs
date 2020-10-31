@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace N.Package.Test
+namespace N.Package.Tests
 {
   /// Helpers
   public static class TestExtensionsData

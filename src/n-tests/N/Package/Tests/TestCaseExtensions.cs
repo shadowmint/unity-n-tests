@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using N.Package.Test;
 
-namespace N.Package.Test
+namespace N.Package.Tests
 {
   public static class TestCaseExtensions
   {
