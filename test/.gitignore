@@ -58,3 +58,5 @@ ProjectSettings
 UnityPackageManager
 etc
 Library
+Logs/*
+pkg-all

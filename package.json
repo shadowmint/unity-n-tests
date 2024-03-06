@@ -1,6 +1,6 @@
 {
   "name": "unity-n-tests",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Test helpers",
   "main": "index.js",
   "repository": {
@@ -22,5 +22,6 @@
     "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
+    "unity-n-workflows": "github:shadowmint/unity-n-workflows"
   }
 }

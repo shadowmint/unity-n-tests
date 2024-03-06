@@ -5,7 +5,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "unity-TEMPLATE": "file:..",
-    "unity-n-tests": "file:.."
+    "unity-n-tests": "file:../unity-n-tests-2.0.0.tgz"
   }
 }
