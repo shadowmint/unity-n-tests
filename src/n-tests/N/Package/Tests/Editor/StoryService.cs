@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -15,21 +14,15 @@ namespace N.Package.Tests.Editor
         public string CurrentFilePath()
         {
             var editorFolder = Path.GetDirectoryName(GetCurrentFileName());
-            if (editorFolder == null)
-            {
-                throw new Exception("Unable to find folder to scan for assets!");
-            }
+            if (editorFolder == null) throw new Exception("Unable to find folder to scan for assets!");
 
             return editorFolder;
         }
 
         public List<StoryScene> FindStories(bool debug)
         {
-            if (EditorApplication.isPlaying)
-            {
-                return new List<StoryScene>();
-            }
-            
+            if (EditorApplication.isPlaying) return new List<StoryScene>();
+
             var servicePath = CurrentFilePath();
             var assetsPath = GetAssetsFolder(servicePath);
             Trace($"Scanning for stories in assets folder: {assetsPath}", debug);
@@ -37,12 +30,9 @@ namespace N.Package.Tests.Editor
             var queue = new Queue<ScanTarget>();
             var resolved = new List<ScanTarget>();
 
-            queue.Enqueue(new ScanTarget() { FolderPath = assetsPath });
+            queue.Enqueue(new ScanTarget { FolderPath = assetsPath });
 
-            while (queue.Any())
-            {
-                ScanFolder(queue.Dequeue(), queue, assetsPath, resolved, debug);
-            }
+            while (queue.Any()) ScanFolder(queue.Dequeue(), queue, assetsPath, resolved, debug);
 
             var uniqueScenePaths = resolved
                 .SelectMany(i => i.Stories)
@@ -59,13 +49,13 @@ namespace N.Package.Tests.Editor
             Debug.Log(message);
         }
 
-        private void ScanFolder(ScanTarget target, Queue<ScanTarget> pending, string assetRootFolder, List<ScanTarget> resolved, bool debug)
+        private void ScanFolder(ScanTarget target, Queue<ScanTarget> pending, string assetRootFolder,
+            List<ScanTarget> resolved, bool debug)
         {
             var files = Directory.GetFiles(target.FolderPath);
             var folders = Directory.GetDirectories(target.FolderPath);
 
             foreach (var file in files)
-            {
                 if (Path.GetExtension(file) == ".prefab")
                 {
                     var assetPath = GetAssetPath(file, assetRootFolder);
@@ -81,12 +71,8 @@ namespace N.Package.Tests.Editor
                         }
                     }
                 }
-            }
 
-            foreach (var folder in folders)
-            {
-                pending.Enqueue(new ScanTarget() { FolderPath = folder });
-            }
+            foreach (var folder in folders) pending.Enqueue(new ScanTarget { FolderPath = folder });
 
             resolved.Add(target);
         }
@@ -102,22 +88,17 @@ namespace N.Package.Tests.Editor
             while (true)
             {
                 var folderName = Path.GetFileName(here);
-                if (folderName == "Assets")
-                {
-                    return here;
-                }
+                if (folderName == "Assets") return here;
 
                 var nextPath = Path.GetFullPath(Path.Join(here, ".."));
                 if (here == nextPath)
-                {
                     throw new Exception($"Invalid path; not assets folder in hierarchy for: {arbitraryPath}");
-                }
 
                 here = nextPath;
             }
         }
 
-        public string GetCurrentFileName([System.Runtime.CompilerServices.CallerFilePath] string fileName = null)
+        public string GetCurrentFileName([CallerFilePath] string fileName = null)
         {
             return fileName;
         }
@@ -135,7 +116,7 @@ namespace N.Package.Tests.Editor
             EditorApplication.isPlaying = true;
         }
 
-        class ScanTarget
+        private class ScanTarget
         {
             public string FolderPath { get; set; }
             public List<StoryScene> Stories { get; } = new();

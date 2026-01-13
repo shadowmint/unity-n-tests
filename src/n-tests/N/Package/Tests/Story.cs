@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using N.Package.Promises;
 using N.Package.Workflows;
+using UnityEditor;
 using UnityEngine;
 
 namespace N.Package.Tests
@@ -21,10 +22,10 @@ namespace N.Package.Tests
             try
             {
                 await workflow.Run();
-                Debug.Log($"<color=#00ff00>Test passed</color>");
-                
+                Debug.Log("<color=#00ff00>Test passed</color>");
+
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+                EditorApplication.isPlaying = false;
 #endif
             }
             catch (Exception error)
@@ -32,13 +33,13 @@ namespace N.Package.Tests
                 Debug.LogError("Test failed");
                 Debug.LogException(error);
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+                EditorApplication.isPlaying = false;
 #endif
             }
         }
 
         /// <summary>
-        /// Implement this to run the story.
+        ///     Implement this to run the story.
         /// </summary>
         protected abstract IEnumerator Execute();
 
@@ -61,10 +62,7 @@ namespace N.Package.Tests
             {
                 yield return new WaitForEndOfFrame();
                 var wrappedEnumerable = _parent.Execute();
-                while (wrappedEnumerable.MoveNext())
-                {
-                    yield return wrappedEnumerable.Current;
-                }
+                while (wrappedEnumerable.MoveNext()) yield return wrappedEnumerable.Current;
                 Resolve();
             }
         }
